@@ -1,0 +1,816 @@
+@font-face {
+    font-family: 'arcade-classic';
+    src: url('/fonts/arcade_classic-webfont.woff2') format('woff2'),
+        url('/fonts/arcade_classic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'arcade-classic2';
+    src: url('/fonts/arcade_classic2-webfont.woff2') format('woff2'),
+        url('/fonts/arcade_classic2-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'astron-boy';
+    src: url('/fonts/astron_boy-webfont.woff2') format('woff2'),
+        url('/fonts/astron_boy-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'cosmic-alien';
+    src: url('/fonts/ca-webfont.woff2') format('woff2'),
+        url('/fonts/ca-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'diskopia';
+    src: url('/fonts/diskopia2.0-webfont.woff2') format('woff2'),
+        url('/fonts/diskopia2.0-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'emulogic';
+    src: url('/fonts/emulogic-webfont.woff2') format('woff2'),
+        url('/fonts/emulogic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'geogrid';
+    src: url('/fonts/geogrid9-webfont.woff2') format('woff2'),
+        url('/fonts/geogrid9-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'hyperspace';
+    src: url('/fonts/hyperspace-webfont.woff2') format('woff2'),
+        url('/fonts/hyperspace-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'iomanoid';
+    src: url('/fonts/iomanoid-webfont.woff2') format('woff2'),
+        url('/fonts/iomanoid-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'just-my-type';
+    src: url('/fonts/just_my_type-webfont.woff2') format('woff2'),
+        url('/fonts/just_my_type-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'my-girl';
+    src: url('/fonts/mygirlisretrodemo-webfont.woff2') format('woff2'),
+        url('/fonts/mygirlisretrodemo-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'pacfont';
+    src: url('/fonts/pacfont-webfont.woff2') format('woff2'),
+        url('/fonts/pacfont-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'retroblaze';
+    src: url('/fonts/retroblaze-webfont.woff2') format('woff2'),
+        url('/fonts/retroblaze-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'vector';
+    src: url('/fonts/vectorb-webfont.woff2') format('woff2'),
+        url('/fonts/vectorb-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'western';
+    src: url('/fonts/westerngames_regular-webfont.woff2') format('woff2'),
+        url('/fonts/westerngames_regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+
+body {
+    margin-left: 5px;
+    background-color: black;
+}
+
+/* header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    border: 2px solid black;
+    height: 100px;
+    overflow: hidden;
+
+
+} */
+/* main {
+    margin-top: 120px;
+} */
+
+
+#press-start {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+
+#logo {
+    max-height: 90%;
+    float: left;
+}
+
+.headerimage {
+  max-height:90%;
+  float: right;
+  margin-right: 5px;
+  margin-top: 5px;
+
+  }
+ .profileimage {
+      max-width: 20%;
+      display: absolute;
+
+ }
+
+.introface {
+    position: absolute;
+    top: 20%;
+    left: 60%;
+}
+.greeting {
+    color: white;
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    font-size: 1em;
+    font-family: "arcade-classic"
+}
+/* emulogic, justmytype, retroblaze  */
+
+#quit-game {
+    position: absolute;
+    top: 5px;
+    left: 90%;
+    font-family: 'retroblaze';
+    font-size: 1em;
+}
+#forgot-register {
+    position: absolute;
+    top: 5px;
+    left: 3%;
+    font-family: 'retroblaze';
+    font-size: 1em;
+}
+.register-screen {
+    border: green 2px dotted;
+    left: 3%;
+    top: 3%;
+    width: 94%;
+    height: 94%;
+    position: absolute;
+}
+.input {
+    position: absolute;
+    display: inline-flex;
+    top: 15vh;
+    width: 100%;
+}
+.message-caption {
+    position: relative;
+    left: 30%;
+    top: 30%;
+    width: 310px;
+    height: 200px;
+}
+
+
+ /*
+.answer {
+    position: absolute;
+    margin-top: 80%;
+} */
+
+button {
+  /* position: absolute;
+  left: 50%;
+  top: 385px;
+  transform: translate(-50%); */
+
+  padding: 12px 24px;
+
+  font-size: 1.6em;
+  text-align: center ;
+  vertical-align: center;
+  color: white;
+  border: none;
+  background: none;
+  letter-spacing: 2px;
+
+
+
+  cursor: pointer;
+}
+
+.register-button {
+    font-family: "astron-boy";
+    animation: blinker 4s linear infinite;
+
+}
+
+#main-button {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%);
+    border: white solid 2px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-family: "iomanoid"
+}
+
+/* geogrid, hyperspace, iomanoid, justmytype, vector, cosmic alien,  arcade-classic,  */
+#main-button:hover {
+    color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(255, 255, 255, 0.3)
+}
+.user-input {
+    color: green;
+    font-size: 1em;
+    font-family: "emulogic"
+
+}
+
+/* emulogic, hyperspace, iomanoid    */
+.intro-inputs {
+    width: 10px;
+    height: 15px;
+    background-color: green;
+    color: green;
+    border: none;
+    margin-top: 18px;
+    margin-left: 3px;
+    animation: blinker 1s linear infinite;
+
+}
+.intro-inputs:focus {
+    outline-width: 0;
+}
+#yes {
+    position: absolute;
+    top: 40%;
+}
+#no {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+}
+.border {
+    border: green 2px dotted;
+    left: 3%;
+    top: 3%;
+    width: 94%;
+    height: 94%;
+    position: absolute;
+    overflow: hidden;
+}
+.banner-image {
+    width: 90vw;
+    height: 90vh;
+    margin-left: 2vw;
+    margin-top: 2vh;
+    /* background-image: url("/images/rainfall.gif"); */
+    background-repeat: no-repeat;
+    background-position: 30% 20%;
+
+    background-size: cover;
+    /* transform: translate(-50%); */
+
+}
+#welcomeback {
+    color: white;
+    position: absolute;
+    left: 44%;
+    top: 25%;
+    font-family: "geogrid";
+    font-size: 1.5em;
+}
+.profilepic {
+    position: absolute;
+    left: 47%;
+    top: 33%;
+    transform: translate(-50%);
+    max-width: 15vw;
+    padding: 3px;
+    cursor: pointer;
+}
+.modalback {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2)
+
+}
+.uploadermodal {
+    position: absolute;
+    left: 50%;
+    top: 32%;
+    background-color: rgba(0, 0, 0, 0.6);
+    transform: translate(-50%);
+    width: 40vw;
+    height: 30vh;
+    font-size: 2em;
+
+}
+.menu {
+    position: relative;
+    left: 45%;
+    transform: translate(-50%);
+    top: 15%;
+    height: 60vh;
+    width: 40vw;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* background-color: white; */
+    border: black 2px solid;
+
+    /* background-image: url("/images/notebook-clipart-parchment-11.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center; */
+}
+.menubuttons {
+    margin-left: 10%;
+    margin-top: 5%;
+    height: 5%;
+    display: inline-block;
+    color: black;
+    font-family: "vector";
+    background: url("/images/rainfall.gif") -80px -80px;
+    color: black;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    font-weight: bold;
+    font-size: 2em;
+    /* font-family: arial, helvetica; */
+    /* width: 600px; */
+    /* margin: 50px auto; */
+    text-align: center;
+    padding: 5px;
+}
+/* #profilemenubutton {
+    background-position: 20% 20%;
+}
+#chatmenubutton{
+    background-position: 20% 30%;
+}
+#friendmenubutton {
+    background-position: 20% 40%;
+
+}
+#onlinemenubutton {
+    background-position: 35% 50%;
+}
+#changemenbutton {
+    background-position: 20% 60%;
+} */
+.menubuttons:hover {
+    /* text-decoration: underline; */
+    color: black;
+    background: none;
+    -webkit-text-fill-color: white;
+    -webkit-background-clip: none;
+}
+#closemenu {
+    float: right;
+    color: black;
+    background: url("/images/rainfall.gif") -80px -80px;
+    color: black;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    font-weight: bold;
+    font-size: 1em;
+}
+#closemenu:hover {
+    font-size: 1.2em;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.largermodal {
+    position: absolute;
+    width: 80vw;
+    height: 80vh;
+    top: 8vh;
+    left: 7vw;
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid black;
+}
+.chat-messages {
+    position: absolute;
+    width: 60%;
+    left: 20%;
+    bottom: 20vh;
+    height: 50vh;
+    border: solid black 1px;
+    font-family: "astron-boy";
+    overflow: scroll;
+}
+
+#chatwelcome {
+    text-align: center;
+}
+.chatheading {
+    margin-left: 70px;
+}
+#chat-text-area {
+    width: 46vw;
+    left: 21%;
+    position: absolute;
+    bottom: 3vh;
+    height: 12vh;
+    outline: none;
+}
+.my-chat-profilepic {
+    max-width: 2vw;
+}
+.their-chat-profilepic {
+    max-width: 2vw;
+    float: right;
+
+}
+
+.my-chat-profiletext{
+    background-color: #F2F2F2;
+    border-radius: 5px;
+    box-shadow: 0 0 6px #B2B2B2;
+    display: inline-block;
+    padding: 10px 18px;
+    position: relative;
+    vertical-align: top;
+    max-width: 30%;
+
+}
+
+.their-chat-profiletext {
+    background-color: #F2F2F2;
+   border-radius: 5px;
+   box-shadow: 0 0 6px #B2B2B2;
+   display: inline-block;
+   padding: 10px 18px;
+   position: relative;
+   vertical-align: top;
+   float: right;
+   max-width: 30%;
+
+}
+/*
+text-align: right
+overflow: hidden */
+
+.my-chat-profilediv {
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.their-chat-profilediv {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: block;
+    width: 98%;
+    height: 60px;
+    margin-right: 20px;
+
+}
+
+
+#largeprofileimage {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+.profileimage {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translate(-50%);
+    top: 8%;
+
+
+}
+
+#edit-profile-button {
+    position: absolute;
+    top: 82%;
+    left: 48%;
+    color: black;
+    transform: translate(-50%);
+    font-family: "arcade-classic";
+
+}
+input[type="file"] {
+    display: none;
+}
+
+.profileimage > .custome-file-upload
+{
+    display: none;
+}
+.uploadermodal {
+    font-family: "iomanoid";
+    font-size: 2em;
+    color: white;
+
+}
+#menu-profile-image {
+    position: absolute;
+    left: 40px;
+    top: 18px;
+    max-width: 3vw;
+    cursor: pointer;
+}
+
+.custom-file-upload {
+    position: absolute;
+    left: 50%;
+    width: 17%;
+    height: 136px;
+    top: 35%;
+    transform: translate(-50%);
+    z-index: 5;
+    color: rgba(255, 255, 255, 0.5);
+    /* border: 1px solid black; */
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-family: "just-my-type";
+}
+.bio {
+    background-color: rgba(0, 0, 0, 0.1);
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    top: 33vh;
+    /* border: 1px solid black; */
+    width: 40vw;
+    font-size: 1.5em;
+    height: 20vh;
+    font-family: "astron-boy";
+    cursor: pointer;
+
+}
+#msg {
+    border: none;
+    overflow: auto;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    left: 50%;
+    font-size: 1.5em;
+
+    transform: translate(-50%);
+    top: 45vh;
+    border: 1px solid black;
+    width: 40vw;
+    height: 20vh;
+    font-family: "astron-boy";
+
+}
+#message-submit {
+    position: absolute;
+    left: 60%;
+    top: 80%;
+    transform: translate(-50%);
+
+}
+#message-cancel {
+    position: absolute;
+    left: 40%;
+    top: 80%;
+    transform: translate(-50%);
+
+}
+.errormessage {
+    color: red;
+}
+#error-register-button {
+    font-family: "arcade-classic";
+    color: red;
+    font-size: 1em;
+
+}
+.all-backgrounds-container {
+    display: flex;
+    /* flex-flow: row wrap; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: space-around;
+    padding-top: 100px;
+}
+.all-backgrounds {
+    max-width: 10%;
+    margin: 30px 30px 30px 30px;
+}
+.allfriends {
+    display: flex;
+    /* flex-flow: row wrap; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: space-around;
+}
+.friend {
+    margin: 30px 30px 30px 30px;
+}
+.friendscontainer {
+    border: black solid 1px;
+    font-family: "just-my-type";
+}
+.wannabecontainer {
+    font-family: "just-my-type";
+}
+
+.wannabe {
+    margin: 30px 30px 30px 30px;
+
+}
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+}
+h1 {
+    text-align: center;
+    font-size: 2em;
+    font-family: "vector";
+}
+
+/* .videoTag {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 2000;
+} */
+
+
+.each-friend-image {
+    max-width: 10vw;
+
+}
+.each-wannabe-image {
+    max-width: 10vw;
+
+}
+#nofriends {
+    font-family: "just-my-type";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%);
+    font-size: 2em;
+}
+
+
+.allOnlineUsers {
+    display: flex;
+    /* flex-flow: row wrap; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: space-around;
+    margin-top: 10px;
+}
+.onlineUser {
+    margin: 30px 30px 30px 30px;
+    font-family: "just-my-type";
+    font-size: 2em;
+}
+
+.onlineusersborder {
+    border: solid 1px black;
+
+}
+.onlineuser-image {
+    max-width: 10vw;
+    margin-left: 10px;
+
+}
+#profileusername {
+    position: absolute;
+    top: 23vh;
+    left: 41%;
+    font-size: 2em;
+    font-family: "just-my-type";
+    text-align: center;
+}
+.friendshipbutton {
+    font-size: 1em;
+    font-family: "just-my-type";
+}
+.friend-pending-button {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 5px;
+    font-size: 1.5em;
+    color: black;
+    font-family: "arcade-classic";
+
+}
+
+#otheruserbio {
+    font-family: 'hyperspace';
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: 60%;
+}
+#otherprofilebutton {
+    font-family: "just-my-type";
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: 50%;
+}
+.other {
+    position: absolute;
+    top: 10%;
+}
+@keyframes blinker {
+  50% { opacity: 0.2; }
+}
+
+button:focus {
+     outline-width: 0;
+}
+button:hover {
+  outline   : none;
+  animation: none;
+}
+
+
+@media screen and (max-width: 1150px) {
+    .menubuttons {
+        margin-left: 5%;
+    }
+}
+@media screen and (max-width: 970px) {
+    .menubuttons {
+        margin-left: -8%;
+    }
+}
+@media screen and (max-width: 870px) {
+    .menubuttons {
+        font-size: 1em;
+    }
+}
