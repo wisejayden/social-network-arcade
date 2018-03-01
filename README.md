@@ -10,7 +10,7 @@
 <p align="center"><img src="/public/images/pressstart.gif"  width="800"/></p>
 <br>
 
-<p align="center"><img src="/public/images/registergif640.gif"  width="800"/></p>
+<p align="center"><img src="/public/images/registerpagegifhigh.gif"  width="800"/></p>
 <br>
 
 
