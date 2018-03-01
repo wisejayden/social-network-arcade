@@ -13,6 +13,9 @@
 <p align="center"><img src="/public/images/registerpagegifhigh.gif"  width="800"/></p>
 <br>
 
+<p align="center"><img src="/public/images/landingpagelow.gif"  width="800"/></p>
+<br>
+
 
 # Using this repo in development
 
