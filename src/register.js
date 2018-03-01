@@ -271,7 +271,7 @@ export class Register extends React.Component {
                         <div className="message-caption">
                             <div>
                                 {!this.state.emptyLastName &&
-                                    <TypeWriter className="question" typing={1.5}>That's a funny sounding name... But ok! How about a last name?</TypeWriter>
+                                    <TypeWriter className="question" typing={1.5}>That's a funny sounding name... But ok! What is your last name?</TypeWriter>
                                 }
                                 {this.state.emptyLastName &&
                                     <TypeWriter className="question errormessage" typing={2}>No last name?! But then... how were you born...?</TypeWriter>
@@ -306,7 +306,7 @@ export class Register extends React.Component {
                         <div className="message-caption">
                             <div>
                                 {!this.state.emptyPassword &&
-                                    <TypeWriter className="question" typing={1.5}>Last step..! Choose a password to secure your shit!</TypeWriter>
+                                    <TypeWriter className="question" typing={1.5}>Last step..! Choose a password to secure your stuff!</TypeWriter>
                                 }
 
                                 {this.state.emptyPassword &&
