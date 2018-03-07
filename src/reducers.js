@@ -20,11 +20,9 @@ export default function (state = {}, action) {
         });
     }
     if(action.type =='UPDATE_ONLINE_USERS') {
-        console.log("Hitting online users reducer");
         state = Object.assign({}, state, {
             onlineUsers: action.onlineUsers
         });
-        console.log("log the state", state);
     }
     if(action.type == 'USER_JOINED') {
         state= Object.assign({}, state, {
@@ -40,21 +38,17 @@ export default function (state = {}, action) {
         });
     }
     if (action.type == 'SEND_CHAT_MESSAGES') {
-        console.log("reduce send chat");
         state = Object.assign({}, state, {
             allMessages: action.sendMessages
         });
-        console.log('send chat message reducer', state);
 
     }
 
     if(action.type == 'ADD_CHAT_MESSAGE') {
-        console.log("Inside chat message reducer - add chat message", action.userMessage);
 
         state = Object.assign({}, state, {
             allMessages: [...state.allMessages, action.userMessage]
         });
-        console.log('add chat message reducer', state);
     }
 
 

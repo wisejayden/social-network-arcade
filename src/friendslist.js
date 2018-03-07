@@ -117,12 +117,3 @@ const mapStateToProps = function(state) {
     };
 };
 export default connect(mapStateToProps)(FriendsList)
-
-
-// {status ==1 && 'ACCEPT'}
-
-        //
-        //
-        // if (!friends) {
-        //     return null;
-        // }

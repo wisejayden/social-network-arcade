@@ -27,8 +27,6 @@ export class MessageUploader extends React.Component {
 
             })
         }
-
-
     }
     uploadProfileMessageButton() {
             axios.post('/profile-edit', {

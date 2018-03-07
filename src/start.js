@@ -50,12 +50,9 @@ export class Welcome extends React.Component {
 
     }
     keyDownIntroScreen(e) {
-        console.log("hello");
-        console.log(e.keycode);
         // if(keyCode ==)
     }
     quitButton() {
-
         this.setState({
             introscreen: true
         })

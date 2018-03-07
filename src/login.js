@@ -23,10 +23,8 @@ export class Login extends React.Component {
     setFieldValue(e) {
         var self = this;
         if(e.keyCode == 13) {
-            console.log("HELLLLLOOO");
             if(e.target.name == 'email'){
                 if(!e.target.value.length) {
-                    console.log("NO LENGTH!");
                     this.setState({
                         emptyEmail: true
                     })
@@ -39,7 +37,6 @@ export class Login extends React.Component {
             }
             if(e.target.name == 'password') {
                 if(!e.target.value.length) {
-                    console.log("NO LENGTH!");
                     this.setState({
                         emptyPassword: true
                     })
@@ -66,19 +63,16 @@ export class Login extends React.Component {
         this.textInput.focus();
     }
     submit() {
-        console.log("SUBMITTING");
         axios.post('/login', {
             email: this.email,
             password: this.password
         })
             .then((res) => {
-                console.log("Login post response");
                 if(res.data.success) {
                     location.replace('/');
                 } else {
 
                     if(res.data.reason == 'Password incorrect') {
-                        console.log("incorrect password");
                         this.setState({
                             password: true,
                             incorrectPassword: true
@@ -96,14 +90,12 @@ export class Login extends React.Component {
                         this.setState({
                             error: 'Please enter a password'
                         })
-                    } else {
-                        console.log("Another error happened");
                     }
                 }
 
         })
-            .catch(()=> {
-                console.log("login post catch");
+            .catch((err)=> {
+                console.log(err);
             })
     }
     componentDidMount() {
@@ -111,7 +103,6 @@ export class Login extends React.Component {
 
         var self = this;
         window.addEventListener("keydown", function(e) {
-            console.log(e.key);
             if(e.key == "Escape") {
                 if(self.state.password === true) {
                     self.setState({

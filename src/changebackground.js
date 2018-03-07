@@ -9,11 +9,9 @@ export class ChangeBackground extends React.Component {
     componentDidMount() {
         axios.get('/get-background-images')
             .then((results) => {
-
+                //Find all saved potential backgrounds and display them. 
                 var resultingBackgrounds = results.data.backgrounds.backgrounds;
-
                 let allBackgrounds = [];
-
                 for (var i = 0; i < resultingBackgrounds.length; i++) {
                     allBackgrounds.push(
                             <img key={i} onClick={this.props.setBackgroundFunction} className= "all-backgrounds" src={resultingBackgrounds[i]} />

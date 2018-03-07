@@ -17,8 +17,6 @@ export class OtherUser extends React.Component {
         this.rejectFriendship = this.rejectFriendship.bind(this);
     }
     componentDidMount() {
-        console.log("____________________________", this.props.match);
-        console.log("Other users profile, id:", this.props.match.params.id);
         //Make an axios request to get user data and friendship status
         axios.get('/get-userdata/' + this.props.match.params.id)
             .then((result) => {
@@ -54,13 +52,11 @@ export class OtherUser extends React.Component {
                         })
                     } else if (friends.status == 5) {
                         this.setState({friendStatusCode: friends.status, friendButtonMessage: 'Add Friend'})
-                        ///Make a state when friendship is true ir not
                     }
-
                 }
             })
-            .catch(() => {
-                console.log("no response :()");
+            .catch((err) => {
+                console.log(err);
             })
     }
     friendRequest() {
@@ -132,5 +128,3 @@ export class OtherUser extends React.Component {
         )
     }
 }
-
-// {this.state.sender === false && <button type="button" onClick={this.state.friendStatusCode = 3 && this.friendRequest}>Reject Friend Request</button>}

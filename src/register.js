@@ -33,11 +33,8 @@ export class Register extends React.Component {
 
 
     }
-    // setFieldValue(e) {
-    //     this[e.target.name] = e.target.value
-    // }
+
     goBack(e) {
-        console.log("Key down");
         // if(e.keyCode == 27) {
         //     console.log("escape!");
         // }
@@ -47,7 +44,6 @@ export class Register extends React.Component {
         if(e.keyCode == 13) {
             if(e.target.name == 'first') {
                 if(!e.target.value.length) {
-                    console.log("NO LENGTH!");
                     this.setState({
                         emptyFirstName: true
                     })
@@ -61,7 +57,6 @@ export class Register extends React.Component {
             }
             if(e.target.name == 'last') {
                 if(!e.target.value.length) {
-                    console.log("NO LENGTH!");
                     this.setState({
                         emptyLastName: true
                     })
@@ -74,7 +69,6 @@ export class Register extends React.Component {
             }
             if(e.target.name == 'email') {
                 if(!e.target.value.length) {
-                    console.log("NO LENGTH!");
                     this.setState({
                         emptyEmail: true
                     })
@@ -87,12 +81,10 @@ export class Register extends React.Component {
             }
             if(e.target.name == 'password') {
                 if(!e.target.value.length) {
-                    console.log("NO LENGTH!");
                     this.setState({
                         emptyPassword: true
                     })
                 } else {
-                    console.log("LOG THE PASSWORD", e.target.value);
                     this[e.target.name] = e.target.value;
                     this.setState({
                         password: false,
@@ -112,14 +104,11 @@ export class Register extends React.Component {
         })
     }
     findFieldValue(e) {
-        console.log("inside findfieldvalue", e.target.value);
         this.setState({
             userInputValue: e.target.value
         })
-
     }
     submit(e) {
-
             axios.post('/register', {
                 first: this.first,
                 last: this.last,
@@ -130,24 +119,21 @@ export class Register extends React.Component {
                     if(res.data.success) {
                         location.replace('/');
                     } else if(res.data.incompletePassword) {
-                        console.log("incomplete password!");
                         this.setState({
                             error: 'Please enter a password'
                         })
                     } else if(res.data.incompleteDetails) {
-                        console.log("incomplete detail!");
                         this.setState({
                             error: 'Incomplete Details'
                         })
                     } else if (res.data.notUniqueEmail) {
-                        console.log("no unique email");
                         this.setState({
                             error: 'This email address has already been registered'
                         })
                     }
             })
-                .catch(() => {
-                    console.log("Failed response");
+                .catch((err) => {
+                    console.log(err);
             })
     }
     registerTime() {
@@ -157,7 +143,6 @@ export class Register extends React.Component {
         })
     }
     quit() {
-        console.log("quitting??");
         this.setState({
             firstName: false,
             lastName: false,
@@ -172,12 +157,10 @@ export class Register extends React.Component {
     }
     componentDidMount() {
         var self = this;
-        // this.
         window.addEventListener("keydown", function(e) {
             if(e.key == "Escape") {
                 if(self.state.firstName === true) {
                     self.props.activateIntroScreen();
-                    console.log("FirstName is true");
                     self.setState({
                         firstName: false,
                         intro: true,
@@ -223,9 +206,6 @@ export class Register extends React.Component {
     }
     render() {
 
-        // <div>
-        //     <Link to="/login">Click here to Log in!</Link>
-        // </div>
         const errorMessage = {color: 'red'}
         return(
             <div className="register-screen" onKeyDown={(e) => this.goBack(e)}>

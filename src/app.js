@@ -32,7 +32,6 @@ export class App extends React.Component {
             firstWelcome: true,
             currentBackground: ''
         };
-        // this.showUploader = this.showUploader.bind(this);
         this.updateImage = this.updateImage.bind(this);
         this.updateBio = this.updateBio.bind(this);
         this.showUploader = this.showUploader.bind(this);
@@ -46,29 +45,21 @@ export class App extends React.Component {
 
 
     }
-    componentDidUpdate() {
-        console.log("UPDATING");
-    }
     componentDidMount() {
         //axios request to get user info and then pass to setState
-        console.log(location.pathname.length);
         if(location.pathname.length > 1) {
             this.setState({
                 largeModalVisible: true,
                 menuButton: false,
                 firstWelcome: false
-
             })
         }
         var self = this;
         axios.get('/user')
             .then((res) => {
-                console.log("______________________", res.data.background);
                 this.setState({
                     style: {backgroundImage: 'url(' + res.data.background + ')'}
                 })
-                    // this.style = {backgroundImage: 'url(' + res.data.background + ')'};
-
                 this.setState({ user: res.data, image: res.data.profileImage, bio: res.data.message, currentBackground: res.data.background
             })
         })
@@ -79,34 +70,28 @@ export class App extends React.Component {
                         menuVisible: false,
                         menuButton: true
                     })
-
                 }
                 if(self.state.largeModalVisible && !self.state.uploaderVisible) {
                     self.setState({
                         largeModalVisible: false,
                         menuVisible: true
                     })
-
                 }
                 if(!self.state.menuVisible && self.state.uploaderVisible && !self.state.largeModalVisible) {
                     self.setState({
                         uploaderVisible: false,
                         menuButton: true
                     })
-
                 }
                 if(self.state.menuVisible && self.state.uploaderVisible) {
                     self.setState({
                         uploaderVisible: false
                     })
-
                 }
                 if(self.state.largeModalVisible && self.state.uploaderVisible) {
-                    //largeModal ACTIVE and uploader ACTIVE
                     self.setState({
                         uploaderVisible: false
                     })
-
                 }
             }
         })
@@ -117,14 +102,11 @@ export class App extends React.Component {
     updateImage(image) {
         this.setState({ image });
         this.setState({ uploaderVisible: false, menuButton: true});
-
     }
     updateBio(message) {
         this.setState({bio: message})
     }
     showUploader() {
-
-        ///REMOVE IF SUCCESSFUL
         if(this.state.uploaderVisible == true && this.state.menuVisible && !this.state.largeModalVisible ) {
             this.setState({ uploaderVisible: false })
         } else if (this.state.uploaderVisible && !this.state.menuVisible && !this.state.largeModalVisible) {
@@ -137,16 +119,13 @@ export class App extends React.Component {
             this.setState({ uploaderVisible: false })
         } else {
             this.setState({ uploaderVisible: true, menuButton: false, firstWelcome: false })
-
         }
     }
-
     showMenu() {
         this.setState({
             menuVisible: true,
             menuButton: false,
             firstWelcome: false
-
         })
     }
     closeMenu() {
@@ -171,7 +150,6 @@ export class App extends React.Component {
         console.log("HELLO", id);
     }
     setBackgroundFunction(img) {
-        console.log("Click on image to change background!");
         var hostWebsite = "http://localhost:8080";
         var image = img.target.src.replace(hostWebsite, '');
         console.log(image);
@@ -179,14 +157,9 @@ export class App extends React.Component {
             .then((result) => {
                 console.log("success!");
             })
-
-        // this.style = {backgroundImage: 'url(' + this.state.currentBackground + ')'}
-
-
         this.setState({
             currentBackground: image,
             style: {backgroundImage: 'url(' + image + ')'}
-
         })
     }
     render() {
@@ -194,11 +167,8 @@ export class App extends React.Component {
 
         return(
             <BrowserRouter>
-
                     <div className="border">
                             <a href="/logout"><button id="quit-game" type="button" name="quit" onClick={this.quit}>Quit</button></a>
-
-
                         <div style={this.state.style} className="banner-image">
                         {!this.state.image &&
                             <img src="/images/unknownprofile.svg" alt={this.state.user.first + ' ' + this.state.user.last} id="menu-profile-image"  onClick={this.showUploader} />
@@ -216,8 +186,6 @@ export class App extends React.Component {
                                 </div>
                             }
 
-
-
                         {this.state.menuVisible &&
                             <div className="modalback">
                                 <div className="menu">
@@ -232,8 +200,6 @@ export class App extends React.Component {
                                 </div>
                             </div>
                         }
-
-
 
                         {this.state.largeModalVisible &&
                             <div className="largermodal">
@@ -295,8 +261,6 @@ export class App extends React.Component {
 
 
                                 <div>
-
-
                                 </div>
                         </div>
                     }
@@ -314,6 +278,3 @@ export class App extends React.Component {
         )
     }
 }
-
-
-    // {this.state.user && <Link to="/"><ProfilePicDisplay image = {this.state.image} user = {this.state.user} showUploader={this.showUploader} className ="profilepic" /></Link> }

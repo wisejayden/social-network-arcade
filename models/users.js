@@ -8,11 +8,9 @@ module.exports.newUser = function(first, last, email, password) {
             [first || null, last || null, email || null, password || null, null, null, '/images/rainfall.gif']
         )
         .then((results) => {
-            console.log("Working?");
             return results.rows;
         })
         .catch((err) => {
-            console.log('Not working');
             return err;
         });
 };
@@ -26,8 +24,8 @@ module.exports.checkLogin = function(email) {
         .then((results) => {
             return results;
         })
-        .catch(() => {
-            console.log("Checklogin database error");
+        .catch((err) => {
+            console.log(err);
         });
 };
 
@@ -40,8 +38,8 @@ module.exports.updateProfileImage = function(filename, id) {
         .then((results) => {
             return results;
         })
-        .catch(() => {
-            console.log("updateProfileImage catch");
+        .catch((err) => {
+            console.log(err);
         });
 };
 
@@ -54,8 +52,8 @@ module.exports.updateProfileMessage = function(message, id) {
         .then((results) => {
             return results;
         })
-        .catch(() => {
-            console.log("updateProfileMessage catch");
+        .catch((err) => {
+            console.log(err);
         });
 };
 
@@ -68,8 +66,8 @@ module.exports.getUserData = function (id) {
         .then((results)=> {
             return results;
         })
-        .catch(() => {
-            console.log("getUserData catch");
+        .catch((err) => {
+            console.log(err);
         });
 };
 
@@ -80,10 +78,10 @@ module.exports.makeFriendRequest = function (myId, theirId) {
             [myId, theirId, 1]
         )
         .then(() => {
-            console.log("successsful insertion friend request");
+            return;
         })
-        .catch(() => {
-            console.log("Friend request not successful");
+        .catch((err) => {
+            console.log(err);
         });
 };
 
@@ -110,7 +108,7 @@ module.exports.updateFriendRequestData = function (friendsStatus, myId, theirId)
             [friendsStatus, myId, theirId]
         )
         .then(() => {
-            console.log("UPdated friends table");
+            return;
         });
 };
 
@@ -122,7 +120,7 @@ module.exports.cancelFriendRequest = function (myId, theirId) {
             [myId, theirId]
         )
         .then(() => {
-            console.log("Successfully cancelled");
+            return;
         });
 };
 
@@ -142,8 +140,8 @@ module.exports.getFriends = function (myId) {
         .then((results) => {
             return results.rows;
         })
-        .catch(() => {
-            console.log("Error with getfriends query");
+        .catch((err) => {
+            console.log(err);
         });
 };
 
@@ -156,8 +154,8 @@ module.exports.getUsersByIds = function(arrayOfIds) {
         .then((results) => {
             return results.rows;
         })
-        .catch(() => {
-            console.log("getUserByIds catch");
+        .catch((err) => {
+            console.log(err);
         });
 };
 
@@ -168,16 +166,9 @@ module.exports.updateBackgroundImage = function(image, id) {
             [image, id]
         )
         .then((results) => {
-            console.log("log updateBackgroundImage results", results.rows);
             return results.rows;
         })
-        .catch(() => {
-            console.log("updateBackgroundImage user query function catch");
+        .catch((err) => {
+            console.log(err);
         });
 };
-
-
-
-// `SELECT * FROM friends_requests
-// WHERE recipient_id = ($1) OR sender_id($1)
-// AND `

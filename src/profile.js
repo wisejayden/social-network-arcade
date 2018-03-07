@@ -60,9 +60,6 @@ export class Profile extends React.Component {
                     <p id="profileusername">{this.props.user.first + ' ' + this.props.user.last}</p>
                 </div>
 
-
-
-
                     {!this.props.bio && this.state.profileButton &&
                         <button id="edit-profile-button" name="button" onClick={this.editProfile}>Add Profile</button>
                     }
@@ -78,8 +75,6 @@ export class Profile extends React.Component {
                         {this.state.updateProfileBioSubmit &&
                         <MessageUploader updateBio={this.props.updateBio} image= {this.props.image} user={this.props.user} updateProfile={this.updateProfile} message={this.props.bio} showBioFn={this.showBioFn} cancelUpdateMessage={this.cancelUpdateMessage}/>
                         }
-
-
             </div>
         )
     }

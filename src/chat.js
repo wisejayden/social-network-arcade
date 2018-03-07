@@ -16,12 +16,10 @@ export class Chat extends React.Component {
             let message = e.target.value;
             e.target.value = '';
             emitChatMessage(message);
-
             e.preventDefault();
         }
     }
     renderChat() {
-        console.log("Inside render chat________________", this.props);
         this.props.chatMessages.map(singleMessage => {
             return (
                 <p key={singleMessage.id}>{singleMessage.message}</p>
@@ -29,19 +27,16 @@ export class Chat extends React.Component {
         })
     }
     componentDidMount() {
+        //Move to bottom of chat window when loaded or updated.
         this.chatScroll.scrollTop = this.chatScroll.scrollHeight - this.chatScroll.clientHeight;
-
     }
     componentDidUpdate() {
         this.chatScroll.scrollTop = this.chatScroll.scrollHeight - this.chatScroll.clientHeight;
-
     }
 
     render() {
         const {allMessages} = this.props;
         let chatWindowMessages;
-        console.log("Inside render", allMessages);
-
         chatWindowMessages = (
             <div>
                 {allMessages && allMessages.map(singleMessage =>
@@ -60,7 +55,6 @@ export class Chat extends React.Component {
                 )}
             </div>
         )
-
         return(
             <div>
                 <h1 className="chatheading">Chat</h1>

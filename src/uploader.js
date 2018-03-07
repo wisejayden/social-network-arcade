@@ -12,13 +12,8 @@ export class Uploader extends React.Component {
 
     }
     setFieldValue(e) {
-
-
         this[e.target.name] = e.target.files[0];
         this.uploadImage();
-
-
-
     }
 
     uploadImage() {
@@ -26,13 +21,12 @@ export class Uploader extends React.Component {
         formData.append('file', this.file);
         formData.append('id', this.props.user.id);
 
-
         axios.post('/upload-image', formData)
             .then((res) => {
                 this.props.updateImage(res.data.file_url);
             })
-            .catch(() => {
-                console.log("no response");
+            .catch((err) => {
+                console.log(err);
             })
     }
     render() {
@@ -50,5 +44,3 @@ export class Uploader extends React.Component {
 
     }
 }
-//
-// <label className="custom-file-upload">
