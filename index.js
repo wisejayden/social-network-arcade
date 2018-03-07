@@ -3,7 +3,7 @@ const app = express();
 const compression = require('compression');
 const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
-var https = require('https');
+const https = require('https');
 const middleware = require('./middleware.js');
 const userQueries = require('./models/users.js');
 const csurf = require('csurf');
@@ -18,14 +18,10 @@ const { getSessionFromSocket } = require('socket-cookie-session');
 const secrets = require('./secrets.json');
 const backgrounds = require('./backgrounds.json');
 
-
-
-
 //Middleware functions
 var hashPassword = middleware.hashPassword;
 var checkPassword = middleware.checkPassword;
 var uploadToS3 = middleware.uploadToS3;
-
 
 //Database queries
 var newUser = userQueries.newUser;
@@ -70,7 +66,7 @@ if (process.env.NODE_ENV != 'production') {
 }
 
 
-
+//For uploading images
 var diskStorage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, __dirname + '/uploads');
@@ -90,50 +86,46 @@ var uploader = multer({
 
 
 
-//
+//To get and update the "Theme" of the social media.
 app.get('/get-background-images', function(req, res) {
-    console.log("HELLLLOOOOO!!");
-    console.log("log backgrounds", backgrounds);
     res.json({
         success: true,
         backgrounds
     });
 });
-
 app.post('/update-background-image', function(req, res) {
     updateBackgroundImage(req.body.image, req.session.user.id)
         .then(()=> {
             res.json({
                 success: true
             });
-        } );
+        });
 });
 
 
 
 
 app.post('/register', function(req, res) {
-    console.log("Register post request");
-    var { first, last, email, password} = req.body
+    var { first, last, email, password} = req.body;
     hashPassword(password)
         .then((hashedPassword) => {
             newUser(first, last, email, hashedPassword)
                 .then((results) => {
-                    console.log("results.code", results.code);
                     if(results.code) {
+                        //23502 code == 'Incomplete details'
                         if(results.code == 23502) {
-                            console.log('incomplete details code')
                             res.json({
                                 success: false,
                                 incompleteDetails: true
-                            })
+                            });
+                            //23505 code == 'Not a unique email'
                         } else if (results.code == 23505) {
-                            console.log("Database error, if code is 2305 then not a unique email - ", results.code);
                             res.json({
                                 success: false,
                                 notUniqueEmail: true
                             });
                         }
+                        //Successful registration, assign cookie and respond with success
                     } else {
                         req.session.user = {
                             first_name: first,
@@ -147,12 +139,9 @@ app.post('/register', function(req, res) {
                             success: true
                         });
                     }
-
-
-                })
+                });
         })
         .catch(() => {
-            console.log("hash password catch");
             res.json({
                 success: false,
                 incompletePassword: true
@@ -162,10 +151,9 @@ app.post('/register', function(req, res) {
 });
 
 
-/// error 23502 - No last name
 
 app.post('/login', function(req, res) {
-    var { email, password} = req.body
+    var { email, password} = req.body;
     checkLogin(email)
         .then((results) => {
             checkPassword(password, results.rows[0].hash_pass)
@@ -179,15 +167,12 @@ app.post('/login', function(req, res) {
                             id: results.rows[0].id,
                         };
                         if (profileImage) {
-                            req.session.user.profileImage = profileImage
+                            req.session.user.profileImage = profileImage;
                         }
-
                         res.json({
                             success: true
                         });
-                        // res.redirect('/');
                     } else {
-                        console.log("It doesnt match :()");
                         res.json({
                             success: false,
                             reason: 'Password incorrect'
@@ -198,24 +183,17 @@ app.post('/login', function(req, res) {
                     res.json({
                         success: false,
                         reason: 'No password'
-                    })
-                })
+                    });
+                });
         })
         .catch(() => {
             res.json({
                 success: false,
                 reason: 'Wrong email'
             });
-        })
+        });
 });
 
-// app.get('/ready', function(req, res) {
-//     if(req.session.user) {
-//         res.redirect('/');
-//     } else {
-//         res.sendFile(__dirname + '/index.html');
-//     }
-// });
 
 app.get('/hello', function(req, res) {
     if(req.session.user) {
@@ -234,16 +212,12 @@ app.get('/welcome', function(req, res) {
 });
 
 app.get('/user', function(req, res) {
-    // var { first_name, last_name, email, id, profileImage, message} = req.session.user;
     getUserData(req.session.user.id)
         .then((results) => {
             var {first, last, email, id, profile_image, bio, background} = results.rows[0];
-            console.log(results.rows[0]);
-
             if(profile_image) {
                 profile_image = hostWebsite + profile_image;
             }
-
             res.json({
                 first: first,
                 last: last,
@@ -258,7 +232,6 @@ app.get('/user', function(req, res) {
 });
 
 app.get('/get-friends', function(req, res) {
-    console.log(req.session.user.id);
     getFriends(req.session.user.id)
         .then((results) => {
             for (var i = 0; i < results.length; i++) {
@@ -283,7 +256,6 @@ app.get('/get-userdata/:id', function(req, res) {
                     .then((results) => {
                         var friendResults;
                         if(!results.rows[0]) {
-                            console.log("Never been friends");
                             friendResults = false;
                         } else {
                             var {recipient_id, sender_id, status} = results.rows[0];
@@ -348,7 +320,6 @@ app.post('/make-friend-request', function(req, res) {
         }
 
     } else if (friendRequest == 2) {
-        console.log("Ending friendship?");
         friendRequest = 5;
         updateFriendRequestData(friendRequest, myId, theirId)
             .then(() => {
@@ -360,7 +331,6 @@ app.post('/make-friend-request', function(req, res) {
     } else if (friendRequest == 3) {
         updateFriendRequestData(friendRequest, myId, theirId)
             .then(() => {
-                console.log("Rejected!");
                 res.json({
                     success: true,
                     friendStatusCode: friendRequest
@@ -385,7 +355,6 @@ app.post('/make-friend-request', function(req, res) {
                 });
             });
     }
-
 });
 
 app.post('/upload-image', uploader.single('file'), uploadToS3, function(req, res) {
@@ -399,11 +368,10 @@ app.post('/upload-image', uploader.single('file'), uploadToS3, function(req, res
                     id: req.body.id
                 });
             })
-            .catch(() => {
-                console.log("uploadimage catch");
-            })
+            .catch((err) => {
+                console.log(err);
+            });
     } else {
-        console.log("fail");
         res.json({
             success: false
         });
@@ -421,18 +389,16 @@ app.post('/profile-edit', function(req, res) {
                 id: req.body.id
             });
         })
-        .catch(() => {
-            console.log("Profile-edit catch");
+        .catch((err) => {
+            console.log(err);
         });
 });
 
 app.get('/logout', function(req, res) {
-    console.log('get logout?');
     req.session.user = null;
     res.redirect('/');
 });
 
-//Redirect to /
 
 
 app.get('*', function(req, res) {
@@ -454,31 +420,32 @@ const allMessages = [];
 let messageId = 0;
 
 
+//Web socket
 io.on('connection', function(socket) {
     const session = getSessionFromSocket(socket, {
         secret: process.env.SESSION_SECRET || secrets.secret,
     });
+    //Disconnect socket is user logs out
     if (!session || !session.user) {
         return socket.disconnect(true);
     }
     const userId = session.user.id;
-
     onlineUsers.push({
         userId: userId,
         socketId: socket.id
     });
-    // console.log(onlineUsers.map(user => user.userId));
+    //Database query to find all users, looping through to attach profile pictures.
     getUsersByIds(onlineUsers.map(user => user.userId))
         .then((results) => {
             for (var i = 0; i < results.length; i++) {
                 results[i].profile_image = hostWebsite + results[i].profile_image;
             }
+            //Send all online users and chat messages to newly logged in user.
             socket.emit('onlineUsers', {
-                //Received to user
                 results
             });
             socket.emit('sendChat', allMessages);
-
+            //If user is the only logged in persona, broadcast to every other user that they have arrived.
             const count = onlineUsers.filter(user => user.userId == userId).length;
             if (count === 1) {
                 getUserData(session.user.id)
@@ -491,16 +458,13 @@ io.on('connection', function(socket) {
                     });
             }
         })
-        .catch(() => {
-            console.log("CATCH CATCH CATCH");
+        .catch((err) => {
+            console.log(err);
         });
-
     socket.on('chatMessage', message =>  {
-        console.log("inside server, log message", message);
         getUserData(userId)
             .then((results) => {
                 var {id, first, last, profile_image} = results.rows[0];
-
                 const singleChatMessage = {
                     messageId,
                     message,
@@ -514,36 +478,22 @@ io.on('connection', function(socket) {
 
                 allMessages.push(singleChatMessage);
                 messageId++;
-                console.log(allMessages);
-
                 io.sockets.emit('chat', singleChatMessage);
-
-
-            })
-
+            });
     });
     socket.on('disconnect', function() {
-        //do all of your stuff
-        //loop through online users, find user iwht socket id. Remove, and check if its last
+        //loop through online users, find user with correct socket id. Remove, and check if its last socket under their profile.
         for (var i = 0; i < onlineUsers.length; i++) {
-            console.log("Inside for loop", onlineUsers);
             if(onlineUsers[i].socketId == socket.id) {
                 onlineUsers.splice(i, 1);
                 break;
             }
         }
-
         var onlineUser = onlineUsers.find(user => user.userId == userId);
         if(!onlineUser) {
-            console.log("NO USERS LEFT, go to emit userLeft");
-
             io.sockets.emit('userLeft', {
                 userId
             });
         }
     } );
-
 });
-//Sending
-// io.sockets.emits
-// socket.broadcast.emit
