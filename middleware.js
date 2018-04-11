@@ -40,11 +40,12 @@ module.exports.checkPassword = function (textEnteredInLoginForm, hashedPasswordF
 
 
 // in production the secrets are environment variables, otherwise stored in json file
-if (process.env.NODE_ENV == 'production') {
-    secrets = process.env.SESSION_SECRET;
-} else {
-    secrets = require('./secrets');
-}
+// if (process.env.NODE_ENV == 'production') {
+//     secrets = process.env;
+// } else {
+//     secrets = require('./secrets');
+// }
+secrets =  process.env.SESSION_SECRET || require('./secrets.json');
 
 //Connect to Amazon server
 const client = knox.createClient({
