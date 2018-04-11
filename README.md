@@ -1,7 +1,7 @@
 <h1 align="center">Social Media Arcade</h1>
 
 <h4 align="center">
-    A Fullstack social network application built with React, Redux, Express, & Socket.io.
+A Full-Stack Social Network Application built with React, Redux, Express, & Socket.io.
 </h4>
 
 ***

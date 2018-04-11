@@ -54,10 +54,9 @@ export class Profile extends React.Component {
     render() {
         return(
             <div>
-                <h1>Profile</h1>
+                <h1>{this.props.user.first + ' ' + this.props.user.last}</h1>
                 <div id="largeprofileimage">
                     <ProfilePicEdit className = 'profileimage' image = {this.props.image} showUploader={this.props.showUploader}  user={this.props.user}/>
-                    <p id="profileusername">{this.props.user.first + ' ' + this.props.user.last}</p>
                 </div>
 
                     {!this.props.bio && this.state.profileButton &&

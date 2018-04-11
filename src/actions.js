@@ -25,7 +25,6 @@ export function friendsListButtonClick(theirId, friendStatusCode) {
 }
 
 export function onlineUsers(onlineUsers) {
-    console.log("HITTING ONLINE USERS ACTIOn", onlineUsers);
     return {
         type: 'UPDATE_ONLINE_USERS',
         onlineUsers: onlineUsers
@@ -33,7 +32,6 @@ export function onlineUsers(onlineUsers) {
 }
 
 export function addUser(user) {
-    console.log("addUser action");
     return{
         type: 'USER_JOINED',
         user: user
@@ -41,7 +39,6 @@ export function addUser(user) {
 }
 
 export function removeUser(user) {
-    console.log("remove user action", user);
     return {
         type: 'USER_LEFT',
         user
@@ -57,7 +54,6 @@ export function sendChatMessages (allMessages) {
 }
 
 export function addChatMessage(userMessage) {
-    console.log("inside action", userMessage);
     return{
         type: "ADD_CHAT_MESSAGE",
         userMessage

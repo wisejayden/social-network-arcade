@@ -25,19 +25,12 @@ export class Register extends React.Component {
         this.setFieldValue = this.setFieldValue.bind(this);
         this.submit = this.submit.bind(this);
         this.registerTime = this.registerTime.bind(this);
-        this.goBack = this.goBack.bind(this);
         this.quit = this.quit.bind(this);
         this.focusTextInput = this.focusTextInput.bind(this);
         this.findFieldValue = this.findFieldValue.bind(this);
         this.findPasswordValue = this.findPasswordValue.bind(this);
 
 
-    }
-
-    goBack(e) {
-        // if(e.keyCode == 27) {
-        //     console.log("escape!");
-        // }
     }
     setFieldValue(e) {
         var self = this;
@@ -208,7 +201,7 @@ export class Register extends React.Component {
 
         const errorMessage = {color: 'red'}
         return(
-            <div className="register-screen" onKeyDown={(e) => this.goBack(e)}>
+            <div className="register-screen" >
             {!this.state.intro &&
                 <Link to="/login"><button id="forgot-register" type="button" name="forgot-register">login</button></Link>
             }

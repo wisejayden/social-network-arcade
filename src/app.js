@@ -41,7 +41,6 @@ export class App extends React.Component {
         this.closeLargerModal = this.closeLargerModal.bind(this);
         this.setBackgroundFunction = this.setBackgroundFunction.bind(this);
         this.showOtherUsersBackground = this.showOtherUsersBackground.bind(this);
-        this.clickOtherUser = this.clickOtherUser.bind(this);
 
 
     }
@@ -110,7 +109,6 @@ export class App extends React.Component {
         if(this.state.uploaderVisible == true && this.state.menuVisible && !this.state.largeModalVisible ) {
             this.setState({ uploaderVisible: false })
         } else if (this.state.uploaderVisible && !this.state.menuVisible && !this.state.largeModalVisible) {
-            console.log("Looking for this");
             this.setState({
                 uploaderVisible: false,
                 menuButton: true
@@ -146,13 +144,10 @@ export class App extends React.Component {
             largeModalVisible: true
         })
     }
-    clickOtherUser (id) {
-        console.log("HELLO", id);
-    }
+
     setBackgroundFunction(img) {
         var hostWebsite = "http://localhost:8080";
         var image = img.target.src.replace(hostWebsite, '');
-        console.log(image);
         axios.post('/update-background-image', {image})
             .then((result) => {
                 console.log("success!");
@@ -246,7 +241,6 @@ export class App extends React.Component {
                                         exact path="/online-users"
                                         component={() => (
                                             <OnlineUsers
-                                            clickOtherUser = {this.clickOtherUser}
                                             />
                                         )}
                                     />
