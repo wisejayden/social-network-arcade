@@ -51,6 +51,8 @@ app.use(function(req, res, next) {
     res.cookie('mytoken', req.csrfToken());
     next();
 });
+app.set('port', (process.env.Port || 8080));
+
 
 app.use(bodyParser.json());
 
@@ -410,10 +412,13 @@ app.get('*', function(req, res) {
 });
 
 
+// 
+// server.listen(process.env.PORT || 8080, function() {
+//     console.log("I'm listening.");
+// });
 
-server.listen(process.env.PORT || 8080, function() {
-    console.log("I'm listening.");
-});
+app.listen(process.env.PORT || app.get('port'), () => console.log("Listening on port 8080"));
+
 
 const onlineUsers = [];
 const allMessages = [];
